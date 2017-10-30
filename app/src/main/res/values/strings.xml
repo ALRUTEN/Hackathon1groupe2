@@ -2,4 +2,7 @@
     <string name="app_name">Hackathon1groupe2</string>
     <string name="viewimagegift">viewImageGift</string>
     <string name="thumbnail">thumbnail</string>
+    <string name="offrir">OFFRIR</string>
+    <string name="offerts">OFFERTS</string>
+    <string name="souhaits">SOUHAITS</string>
 </resources>
