@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.wcs.hackathon1groupe2">
 
-    <!-- To access Google+ APIs: -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListActivity" />
+        <activity android:name=".ViewOtherList" />
         <activity android:name=".WischActivity"></activity>
     </application>
 

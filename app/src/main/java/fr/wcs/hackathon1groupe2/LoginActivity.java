@@ -79,9 +79,9 @@ public class LoginActivity extends AppCompatActivity {
                                 User userValues = dsp.getValue(User.class);
 
                                 //On compare le contenu des edit text avec Firebase grâce au user_name
-                                if (userValues.getUser_name().equals(userNameContent)) {
+                                if (userValues != null && userValues.getUser_name().equals(userNameContent)) {
                                     // On verifie le password
-                                    if (userValues.getUser_password().equals(mEncrypt(userPasswordContent, "AES"))) {
+                                    if (userValues.getUser_password().equals(mEncrypt(userPasswordContent))) {
 
                                         // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
                                         mUserId = dsp.getKey();
@@ -108,14 +108,13 @@ public class LoginActivity extends AppCompatActivity {
                                         // Si le mot de passe ou le pseudo ne concordent pas
                                         Toast.makeText(getApplicationContext(), "Mot de passe incorrect", Toast.LENGTH_SHORT).show();
                                     }
-                                    return;
                                 }
                             }
 
                             // Utilisateur nouveau : le compte n'existe pas, on le créer !
                             User user = new User(userNameContent, userPasswordContent);
                             user.setUser_name(userNameContent);
-                            user.setUser_password(mEncrypt(userPasswordContent, "AES"));
+                            user.setUser_password(mEncrypt(userPasswordContent));
                             String userId = refUser.push().getKey();
                             refUser.child(userId).setValue(user);
 
@@ -133,9 +132,9 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         // Encryptage du mot de passe
-                        public String mEncrypt(String userPassword, String key) {
+                        String mEncrypt(String userPassword) {
                             try {
-                                Key clef = new SecretKeySpec(key.getBytes("ISO-8859-2"), "Blowfish");
+                                Key clef = new SecretKeySpec("AES".getBytes("ISO-8859-2"), "Blowfish");
                                 Cipher cipher = Cipher.getInstance("Blowfish");
                                 cipher.init(Cipher.ENCRYPT_MODE, clef);
                                 return new String(cipher.doFinal(userPassword.getBytes()));
