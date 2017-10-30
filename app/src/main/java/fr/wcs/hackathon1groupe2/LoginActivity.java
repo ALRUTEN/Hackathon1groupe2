@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     final String userName = "NameKey";
     final String userPassword = "PasswordKey";
     private String mUserId = "UserKey";
-    private String mEncrypt = "encrypt";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         final SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         final String sharedPrefUserName = sharedpreferences.getString(userName, "");
         final String sharedPrefUserPassword = sharedpreferences.getString(userPassword, "");
-        final String sharedPrefUserKey = sharedpreferences.getString(mUserId, "");
         final ProgressBar simpleProgressBar = findViewById(R.id.simpleProgressBar);
 
         //On rempli les editText avec les sharedPreferences si c'est pas notre premiere connexion
@@ -128,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("mUserId", userId);
                             editor.apply();
                             Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), ListActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
 
                         // Encryptage du mot de passe
