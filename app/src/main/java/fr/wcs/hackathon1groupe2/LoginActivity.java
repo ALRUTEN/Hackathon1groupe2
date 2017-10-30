@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 simpleProgressBar.setVisibility(View.VISIBLE);
 
                 //On recupere le contenu des edit text
@@ -73,13 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                     refUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            Boolean exist=false,mdp=false;
                             for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                                 User userValues = dsp.getValue(User.class);
 
                                 //On compare le contenu des edit text avec Firebase grâce au user_name
                                 if (userValues != null && userValues.getUser_name().equals(userNameContent)) {
+                                    exist=true;
                                     // On verifie le password
                                     if (userValues.getUser_password().equals(mEncrypt(userPasswordContent))) {
+                                        mdp=true;
 
                                         // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
                                         mUserId = dsp.getKey();
@@ -89,44 +91,36 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putString(userPassword, userPasswordContent);
                                         editor.putString("mUserId", mUserId);
                                         editor.apply();
-
-                                        // If user is known : if he has no quest => LobbyActivity; if he has => PlayerActivity
-                                        DatabaseReference db1 = FirebaseDatabase.getInstance().getReference("User");
-                                        DatabaseReference db2 = db1.child(mUserId).child("user_quest");
-                                        db2.addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                            }
-
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
-                                            }
-                                        });
-                                    } else {
-                                        // Si le mot de passe ou le pseudo ne concordent pas
-                                        Toast.makeText(getApplicationContext(), "Mot de passe incorrect", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
 
-                            // Utilisateur nouveau : le compte n'existe pas, on le créer !
-                            User user = new User(userNameContent, userPasswordContent);
-                            user.setUser_name(userNameContent);
-                            user.setUser_password(mEncrypt(userPasswordContent));
-                            String userId = refUser.push().getKey();
-                            refUser.child(userId).setValue(user);
+                            if(exist && mdp){
+                                Toast.makeText(getApplicationContext(), "Bon Retour", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }else if(exist && !mdp){
+                                // Si le mot de passe ou le pseudo ne concordent pas
+                                Toast.makeText(getApplicationContext(), "Mot de passe incorrect", Toast.LENGTH_SHORT).show();
+                            }else{
+                                // Utilisateur nouveau : le compte n'existe pas, on le créer !
+                                User user = new User(userNameContent, userPasswordContent);
+                                user.setUser_name(userNameContent);
+                                user.setUser_password(mEncrypt(userPasswordContent));
+                                String userId = refUser.push().getKey();
+                                refUser.child(userId).setValue(user);
 
-                            // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
-                            mUserId = userId;
+                                // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
+                                mUserId = userId;
 
-                            // On enregistre dans les shared Preferences
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString(userName, userNameContent);
-                            editor.putString(userPassword, userPasswordContent);
-                            editor.putString("mUserId", userId);
-                            editor.apply();
-                            Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                // On enregistre dans les shared Preferences
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString(userName, userNameContent);
+                                editor.putString(userPassword, userPasswordContent);
+                                editor.putString("mUserId", userId);
+                                editor.apply();
+                                Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
                         }
 
                         // Encryptage du mot de passe
@@ -141,10 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
+                        @Override public void onCancelled(DatabaseError databaseError) {}
                     });
                 }
             }
