@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fr.wcs.hackathon1groupe2.LoginActivity">
+
+    <EditText
+        android:id="@+id/connexionUserName"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:inputType="text"
+        android:maxLength="15"
+        app:layout_constraintBottom_toTopOf="@+id/connexionUserPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/connexionUserPassword"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:inputType="textPassword"
+        android:maxLength="15"
+        app:layout_constraintBottom_toTopOf="@+id/buttonConnexionSend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexionUserName" />
+
+    <ProgressBar
+        android:id="@+id/simpleProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonConnexionSend" />
+
+    <Button
+        android:id="@+id/buttonConnexionSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toTopOf="@+id/simpleProgressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connexionUserPassword" />
+</android.support.constraint.ConstraintLayout>
