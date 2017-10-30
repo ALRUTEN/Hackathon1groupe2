@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Au clic du bouton, c'est la que tout se passe !!!!!!!!
-        buttonSend.setOnClickListener(new View.OnClickListener() {
+        buttonSend.setOnClickListener(  new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
