@@ -6,10 +6,9 @@ public class Gift {
 
     public Gift() {}
 
-    Gift(String title, String description, int thumbnail) {
+    Gift(String title, String description) {
         this.title = title;
         this.description = description;
-        this.thumbnail = thumbnail;
     }
 
     String getTitle() {return title;}

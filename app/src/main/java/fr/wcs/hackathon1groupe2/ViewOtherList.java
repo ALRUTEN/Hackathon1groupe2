@@ -20,7 +20,7 @@ public class ViewOtherList extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        mAdapter = new RecyclerViewAdapter(giftList);
+        mAdapter = new RecyclerViewAdapter(ViewOtherList.this,giftList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
