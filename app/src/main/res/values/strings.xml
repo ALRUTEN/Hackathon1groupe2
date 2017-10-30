@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Hackathon1groupe2</string>
+    <string name="viewimagegift">viewImageGift</string>
+    <string name="thumbnail">thumbnail</string>
 </resources>
