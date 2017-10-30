@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                     refUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            Boolean exist=false;
                             for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                                 User userValues = dsp.getValue(User.class);
 
@@ -91,19 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.putString(userPassword, userPasswordContent);
                                         editor.putString("mUserId", mUserId);
                                         editor.apply();
-
-                                        // If user is known : if he has no quest => LobbyActivity; if he has => PlayerActivity
-                                        DatabaseReference db1 = FirebaseDatabase.getInstance().getReference("User");
-                                        DatabaseReference db2 = db1.child(mUserId).child("user_quest");
-                                        db2.addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                            }
-
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
-                                            }
-                                        });
+                                        exist=true;
                                     } else {
                                         // Si le mot de passe ou le pseudo ne concordent pas
                                         Toast.makeText(getApplicationContext(), "Mot de passe incorrect", Toast.LENGTH_SHORT).show();
@@ -111,24 +100,30 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
 
-                            // Utilisateur nouveau : le compte n'existe pas, on le créer !
-                            User user = new User(userNameContent, userPasswordContent);
-                            user.setUser_name(userNameContent);
-                            user.setUser_password(mEncrypt(userPasswordContent));
-                            String userId = refUser.push().getKey();
-                            refUser.child(userId).setValue(user);
+                            if (exist){
+                                Toast.makeText(getApplicationContext(), "Bon Retour", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), ListActivity.class));
+                            }else{
+                                // Utilisateur nouveau : le compte n'existe pas, on le créer !
+                                User user = new User(userNameContent, userPasswordContent);
+                                user.setUser_name(userNameContent);
+                                user.setUser_password(mEncrypt(userPasswordContent));
+                                String userId = refUser.push().getKey();
+                                refUser.child(userId).setValue(user);
 
-                            // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
-                            mUserId = userId;
+                                // La clé de l'utilisateur qu'on va utiliser partout dans l'application.
+                                mUserId = userId;
 
-                            // On enregistre dans les shared Preferences
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString(userName, userNameContent);
-                            editor.putString(userPassword, userPasswordContent);
-                            editor.putString("mUserId", userId);
-                            editor.apply();
-                            Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), ListActivity.class));
+                                // On enregistre dans les shared Preferences
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString(userName, userNameContent);
+                                editor.putString(userPassword, userPasswordContent);
+                                editor.putString("mUserId", userId);
+                                editor.apply();
+                                Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), ListActivity.class));
+                            }
+
                         }
 
                         // Encryptage du mot de passe

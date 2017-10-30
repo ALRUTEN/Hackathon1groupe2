@@ -14,7 +14,6 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
