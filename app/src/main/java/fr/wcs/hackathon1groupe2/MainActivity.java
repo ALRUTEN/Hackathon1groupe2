@@ -11,8 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-      //  setSupportActionBar(toolbar);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("SOUHAITS"));
         tabLayout.addTab(tabLayout.newTab().setText("OFFERTS"));
@@ -29,15 +27,9 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            @Override public void onTabUnselected(TabLayout.Tab tab) {}
 
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
     }
 }
