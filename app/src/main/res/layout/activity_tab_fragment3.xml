@@ -5,14 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/offrir"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -28,5 +20,17 @@
         app:backgroundTint="@android:color/background_dark"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        layout_constraintBottom_toBottomOf="parent"
+        layout_constraintEnd_toEndOf="parent"
+        layout_constraintStart_toStartOf="parent"
+        layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="20dp"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>

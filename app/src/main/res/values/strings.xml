@@ -7,4 +7,5 @@
     <string name="menu">Menu</string>
     <string name="ajouter_ma_liste">Ajouter à ma liste</string>
     <string name="retirer_de_ma_liste">Retirer de ma liste</string>
+    <string name="give">Offrir</string>
 </resources>

@@ -25,7 +25,7 @@ public class ViewOtherList extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        mGiftList=new ArrayList<>();
+        mGiftList = new ArrayList<>();
         mAdapter = new RecyclerViewAdapter(ViewOtherList.this,mGiftList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
@@ -71,7 +71,7 @@ public class ViewOtherList extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    public static class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
         private int spacing;

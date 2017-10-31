@@ -9,4 +9,9 @@
         android:id="@+id/action_remove_list"
         android:orderInCategory="101"
         android:title="@string/retirer_de_ma_liste" />
+
+    <item
+        android:id="@+id/action_give"
+        android:orderInCategory="102"
+        android:title="@string/give"/>
 </menu>

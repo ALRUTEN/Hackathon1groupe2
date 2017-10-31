@@ -85,6 +85,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 case R.id.action_remove_list:
                     Toast.makeText(mContext, "Retiré de ma liste", Toast.LENGTH_SHORT).show();
                     return true;
+                case R.id.action_give:
+
+                    Toast.makeText(mContext, "Cadeau offert", Toast.LENGTH_SHORT).show();
+                    return true;
                 default:
             }
             return false;
