@@ -1,8 +1,10 @@
 package fr.wcs.hackathon1groupe2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,10 +15,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TabFragment2 extends Fragment {
+
+    final String userName = "NameKey";
 
     private List<Gift> mGiftList;
     private RecyclerViewAdapter mAdapter;
@@ -40,31 +50,27 @@ public class TabFragment2 extends Fragment {
     }
 
     private void prepareGiftData() {
-        //todo modifier les gifts affichés
-        int[] covers = new int[]{
-                /*
-                R.drawable.album1,
-                R.drawable.album2,
-                R.drawable.album3
-                */
-        };
+        final DatabaseReference refUser = FirebaseDatabase.getInstance().getReference("User");
+        refUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            final SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            final String sharedPrefUserName = sharedpreferences.getString(userName, "");
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    User userValues = dsp.getValue(User.class);
+                    if (userValues != null && userValues.getUser_name().equals(sharedPrefUserName)) {
+                        for(Gift gift:userValues.getListGift()){
+                            if (gift.getGived()) {
+                                mGiftList.add(gift);
+                            }
+                        }
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
 
-        Gift gift = new Gift("Mad Max: Fury Road", "Action & Adventure");
-        mGiftList.add(gift);
-
-        gift = new Gift("Inside Out", "Animation, Kids & Family");
-        mGiftList.add(gift);
-
-        gift = new Gift("Inside Out", "Animation, Kids & Family");
-        mGiftList.add(gift);
-
-        gift = new Gift("Inside Out", "Animation, Kids & Family");
-        mGiftList.add(gift);
-
-        gift = new Gift("Inside Out", "Animation, Kids & Family");
-        mGiftList.add(gift);
-
-        mAdapter.notifyDataSetChanged();
+            @Override public void onCancelled(DatabaseError databaseError) {}
+        });
     }
     private int dpToPx(int dp) {
         Resources r = getResources();

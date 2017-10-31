@@ -88,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                                         // On sauvegarde l'utilisateur connu dans les sharedPreferences
                                         SharedPreferences.Editor editor = sharedpreferences.edit();
                                         editor.putString(userName, userNameContent);
-                                        editor.putString(userPassword, userPasswordContent);
                                         editor.putString("mUserId", mUserId);
                                         editor.apply();
                                     }
