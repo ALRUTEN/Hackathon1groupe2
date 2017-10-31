@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/action_add_favourite"
+        android:id="@+id/action_add_list"
         android:orderInCategory="100"
-        android:title="" />
+        android:title="@string/ajouter_ma_liste" />
 
     <item
-        android:id="@+id/action_play_next"
+        android:id="@+id/action_remove_list"
         android:orderInCategory="101"
-        android:title="" />
+        android:title="@string/retirer_de_ma_liste" />
 </menu>

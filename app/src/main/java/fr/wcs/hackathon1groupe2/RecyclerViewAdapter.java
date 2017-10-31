@@ -23,13 +23,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title,description;
-        ImageView thumbnail, viewImageGift;
+        ImageView menu, viewImageGift;
 
         MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.viewTitle);
             description = view.findViewById(R.id.viewDescription);
-            thumbnail = view.findViewById(R.id.thumbnail);
+            menu = view.findViewById(R.id.menu);
             viewImageGift = view.findViewById(R.id.viewImageGift);
         }
     }
@@ -54,13 +54,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.description.setText(gift.getDescription());
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(gift.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(gift.getPicture()).into(holder.viewImageGift);
 
-        holder.viewImageGift.setOnClickListener(new View.OnClickListener() {
+        holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO afficher un menu
-                //showPopupMenu(holder.overflow);
+                showPopupMenu(holder.menu);
             }
         });
     }
@@ -80,11 +79,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                case R.id.action_add_list:
+                    Toast.makeText(mContext,"Ajouté à ma liste", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                case R.id.action_remove_list:
+                    Toast.makeText(mContext, "Retiré de ma liste", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
