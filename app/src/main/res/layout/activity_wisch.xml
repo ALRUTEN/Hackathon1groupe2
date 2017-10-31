@@ -4,64 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.wcs.hackathon1groupe2.MainActivity">
+    tools:context="fr.wcs.hackathon1groupe2.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="139dp"
-        android:layout_height="118dp"
-        app:layout_constraintBottom_toTopOf="@+id/description"
+        android:layout_width="185dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/description"
-        android:hint="Description"
-        android:gravity="center"
-        android:layout_width="match_parent"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/lien"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:layout_marginBottom="17dp"
+        android:gravity="center"
+        android:hint="Titre"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/lien"
-        android:hint="Lien"
-        android:gravity="center"
-        android:layout_width="match_parent"
+        android:id="@+id/description"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/annuler"
+        android:layout_marginBottom="193dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:hint="Description"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/annuler"
-        android:text="annuler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="33dp"
+        android:layout_marginStart="16dp"
+        android:text="annuler"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/creer"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lien" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/creer"
-        android:text="creer"
+        android:id="@+id/buttonCreer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="20dp"
+        android:text="creer"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgGallerieTofs"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="49dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAppPhoto"
+        app:layout_constraintEnd_toEndOf="@+id/description"
+        app:layout_constraintTop_toTopOf="@+id/imgAppPhoto"
+        app:srcCompat="@drawable/ic_photo_library_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imgLien"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginStart="54dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAppPhoto"
+        app:layout_constraintEnd_toStartOf="@+id/imgAppPhoto"
+        app:layout_constraintStart_toStartOf="@+id/annuler"
+        app:layout_constraintTop_toTopOf="@+id/imgAppPhoto"
+        app:srcCompat="@drawable/ic_link_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imgAppPhoto"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="88dp"
+        android:layout_marginTop="90dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/creer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/annuler"
-        app:layout_constraintTop_toBottomOf="@+id/lien"
-        app:layout_constraintVertical_bias="0.495" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/ic_photo_camera_black_24dp" />
 
 
 </android.support.constraint.ConstraintLayout>

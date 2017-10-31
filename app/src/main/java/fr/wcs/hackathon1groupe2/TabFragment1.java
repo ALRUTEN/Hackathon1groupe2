@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 public class TabFragment1 extends Fragment {
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_tab_fragment1, container, false);
@@ -21,5 +22,6 @@ public class TabFragment1 extends Fragment {
             }
         });
         return view;
+
+        }
     }
-}
