@@ -8,4 +8,9 @@
     <string name="ajouter_ma_liste">Ajouter à ma liste</string>
     <string name="retirer_de_ma_liste">Retirer de ma liste</string>
     <string name="give">Offrir</string>
+    <string name="titre">Titre</string>
+    <string name="description">Description</string>
+    <string name="annuler">annuler</string>
+    <string name="creer">creer</string>
+    <string name="image">Image</string>
 </resources>
