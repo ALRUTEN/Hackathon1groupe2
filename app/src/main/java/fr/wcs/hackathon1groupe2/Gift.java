@@ -2,7 +2,7 @@ package fr.wcs.hackathon1groupe2;
 
 public class Gift {
     private String title, description;
-    private int thumbnail;
+    private int picture,menu;
 
     public Gift() {}
 
@@ -11,12 +11,15 @@ public class Gift {
         this.description = description;
     }
 
-    String getTitle() {return title;}
+    public String getTitle() {return title;}
     public void setTitle(String name) {this.title = name;}
 
-    String getDescription() {return description;}
+    public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
 
-    int getThumbnail() {return thumbnail;}
-    public void setThumbnail(int thumbnail) {this.thumbnail = thumbnail;}
+    public int getPicture() {return picture;}
+    public void setPicture(int picture) {this.picture = picture;}
+
+    public int getMenu() {return menu;}
+    public void setMenu(int menu) {this.menu = menu;}
 }
